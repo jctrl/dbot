@@ -203,7 +203,7 @@
                      "s3:PutObjectVersionAcl"
                    ],
                    "Resource": [
-                     "arn:aws:s3:::pgarbe-hubot/brain-dump.json"
+                     "arn:aws:s3:::dla-dbot/brain-dump.json"
                    ]
                  }
               ]
