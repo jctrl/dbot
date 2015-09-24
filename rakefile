@@ -8,7 +8,7 @@ require 'autostacker24'
 
 Aws.config.update({
   region: 'us-east-1',
-  credentials: Aws::Credentials.new('AKIAJBHIWMELDAONGPYA', 'gxm+5/sf8dKiJT3Dcbg5RiA8zqxDSkgp0CJvKrnK')
+  credentials: Aws::Credentials.new('AKIAJEGHK6J6AIFD55VA', 'JerXPkE/Q8bIde6GvH8HlhU8QK5BPO5JRt6TUiLx')
 })
 
 VERSION           = ENV['CIRCLE_BUILD_NUM'] || ENV['VERSION']
