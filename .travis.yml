@@ -8,9 +8,9 @@ install:
 
 script:
   - docker info
-  - docker build -t listenrightmeow/dbot-hubot:v_TRAVIS_BUILD_NUMBER .
+  - docker build -t listenrightmeow/dbot:v_TRAVIS_BUILD_NUMBER .
 
 deploy:
   - docker login -e DOCKER_EMAIL -u DOCKER_USER -p DOCKER_PASS
-  - docker push listenrightmeow/dbot-hubot:v_TRAVIS_BUILD_NUMBER
+  - docker push listenrightmeow/dbot:v_TRAVIS_BUILD_NUMBER
   - bundle exec rake create_or_update

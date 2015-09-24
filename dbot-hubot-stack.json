@@ -1,11 +1,11 @@
 { 
 	"containerDefinitions": [{
-	  "name": "dbot-hubot",
-	  "image": "listenrightmeow/dbot-hubot:v_BUILD_NR",
+	  "name": "dbot",
+	  "image": "listenrightmeow/dbot:v_BUILD_NR",
 	  "cpu": 10,
 	  "memory": 250,
 	  "essential": true,
 	  "environment": []
 	}],
-	"family": "dbot-hubot"
+	"family": "dbot"
 }

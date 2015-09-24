@@ -9,7 +9,7 @@ require 'autostacker24'
 VERSION           = ENV['CIRCLE_BUILD_NUM'] || ENV['VERSION']
 SANDBOX           = ENV['SANDBOX'] || ENV['GO_JOB_NAME'].nil? && `whoami`.strip
 
-SERVICE           = 'dbot-hubot'
+SERVICE           = 'dbot'
 SERVICE_STACK     = SANDBOX ? "#{SANDBOX}-#{SERVICE}" : SERVICE
 SERVICE_TEMPLATE  = File.read("#{SERVICE}-stack.json")
 
