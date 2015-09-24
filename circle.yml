@@ -1,0 +1,32 @@
+machine:
+  services:
+    - docker
+
+  ruby:
+    version: 2.0.0
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+
+  pre:
+    - gem install bundler
+
+  override:
+    - bundle install
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - docker info
+    - docker build -t listenrightmeow/dbot-hubot:v_$CIRCLE_BUILD_NUM .
+    - mkdir -p ~/docker; docker save listenrightmeow/dbot-hubot:v_$CIRCLE_BUILD_NUM > ~/docker/image.tar
+
+test:
+  override:
+    - docker run -d listenrightmeow/dbot-hubot:v_$CIRCLE_BUILD_NUM
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push listenrightmeow/dbot-hubot:v_$CIRCLE_BUILD_NUM
+      - bundle exec rake create_or_update
