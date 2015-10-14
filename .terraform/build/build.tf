@@ -67,6 +67,91 @@ resource "aws_internet_gateway" "dbot-gateway-us-east-1-tf" {
   vpc_id = "${aws_vpc.dbot-vpc-us-east-1-tf.id}"
 }
 
+resource "aws_route_table" "dbot-route-table-us-east-1-tf" {
+  vpc_id = "${aws_vpc.dbot-vpc-us-east-1-tf.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.dbot-gateway-us-east-1-tf.id}"
+  }
+}
+
+resource "aws_network_acl" "dbot-network-acl-us-east-1-tf" {
+  vpc_id = "${aws_vpc.dbot-vpc-us-east-1-tf.id}"
+
+  ingress {
+    protocol = "tcp"
+    rule_no = 100
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 80
+    to_port = 80
+  }
+
+  ingress {
+    protocol = "tcp"
+    rule_no = 110
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 443
+    to_port = 443
+  }
+
+  ingress {
+    protocol = "tcp"
+    rule_no = 120
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 22
+    to_port = 22
+  }
+
+  ingress {
+    protocol = "tcp"
+    rule_no = 130
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 3389
+    to_port = 3389
+  }
+
+  ingress {
+    protocol = "tcp"
+    rule_no = 140
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 49152
+    to_port = 65535
+  }
+
+  egress {
+    protocol = "tcp"
+    rule_no = 100
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 80
+    to_port = 80
+  }
+
+  egress {
+    protocol = "tcp"
+    rule_no = 110
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 443
+    to_port = 443
+  }
+
+  ingress {
+    protocol = "tcp"
+    rule_no = 120
+    action = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port = 49152
+    to_port = 65535
+  }
+}
+
 resource "aws_eip" "dbot-elastic-ip-us-east-1-tf" {
   instance = "${aws_instance.dbot-aws-ec2-us-east-1-tf.id}"
   vpc = true
