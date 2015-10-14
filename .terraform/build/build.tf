@@ -142,7 +142,7 @@ resource "aws_network_acl" "dbot-network-acl-us-east-1-tf" {
     to_port = 443
   }
 
-  ingress {
+  egress {
     protocol = "tcp"
     rule_no = 120
     action = "allow"
