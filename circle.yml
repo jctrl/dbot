@@ -10,23 +10,23 @@ dependencies:
     - "~/docker"
 
   pre:
-    - gem install bundler
+    - wget https://dl.bintray.com/mitchellh/terraform/terraform_0.6.4_linux_amd64.zip
+    - unzip terraform_0.6.3_linux_amd64.zip
 
   override:
     - bundle install
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker info
-    - docker build -t listenrightmeow/dbot:v_$CIRCLE_BUILD_NUM .
-    - mkdir -p ~/docker; docker save listenrightmeow/dbot:v_$CIRCLE_BUILD_NUM > ~/docker/image.tar
+    - docker build -t listenrightmeow/dbot:latest .
+    - mkdir -p ~/docker; docker save listenrightmeow/dbot:latest > ~/docker/image.tar
 
 test:
   override:
-    - docker run -d listenrightmeow/dbot:v_$CIRCLE_BUILD_NUM
+    - docker run -d listenrightmeow/dbot:latest
+    - ./terraform plan -out=terraform.plan -var "ssh_key=`echo $AWS_SSH_KEY`" -var "access_key=`echo $TERRAFORM_AWS_ACCESS_KEY`" -var "secret_key=`echo $TERRAFORM_AWS_SECRET_KEY`" ./terraform/build
 
 deployment:
-  hub:
+  production:
     branch: master
     commands:
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push listenrightmeow/dbot:v_$CIRCLE_BUILD_NUM
-      - bundle exec rake create_or_update
+      - ./terraform apply terraform.plan

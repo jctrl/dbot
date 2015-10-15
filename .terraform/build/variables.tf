@@ -1,6 +1,7 @@
 variable "ssh_key" {}
 variable "access_key" {}
 variable "secret_key" {}
+variable "docker_version" {}
 
 variable "region" {
 	default = "us-east-1"
@@ -11,7 +12,7 @@ variable "key_name" {
 }
 
 variable "instance_type" {
-	default = "t2.medium"
+	default = "t2.micro"
 }
 
 variable "amis" {
@@ -20,35 +21,6 @@ variable "amis" {
 	}
 }
 
-variable "iam_role" {
-	default = <<EOF
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Action": "sts:AssumeRole",
-			"Principal": {
-				"Service": "ec2.amazonaws.com"
-			},
-			"Effect": "Allow",
-			"Sid": ""
-		}
-	]
-}
-EOF
-}
-
-variable "iam_policy" {
-	default = <<EOF
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Action": "*",
-			"Resource": "*"
-		}
-	]
-}
-EOF
+variable "availability" {
+	default = "us-east-1a"
 }

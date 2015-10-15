@@ -1,9 +1,9 @@
 [
   {
-    "name": "dbot-ecs-us-east-1-tf",
-    "image": "listenrightmeow/dbot",
-    "cpu": 10,
-    "memory": 500,
+    "name": "dbot-ecs-service-us-east",
+    "image": "listenrightmeow/dbot:latest",
+    "cpu": 128,
+    "memory": 128,
     "essential": true,
     "portMappings": [
       {
