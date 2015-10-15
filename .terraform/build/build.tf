@@ -49,8 +49,8 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
   {
     "name": "dbot-ecs-service-us-east",
     "image": "listenrightmeow/dbot:latest",
-    "cpu": 128,
-    "memory": 128,
+    "cpu": 256,
+    "memory": 256,
     "environment": [
       {
         "name" : "HUBOT_SLACK_TOKEN",
