@@ -4,6 +4,12 @@
     "image": "listenrightmeow/dbot:latest",
     "cpu": 128,
     "memory": 128,
+    "environment": [
+      {
+        "name" : "HUBOT_SLACK_TOKEN",
+        "value" : "xoxb-11255940016-Uta5czhT1P1n9plCqESROEJa"
+      }
+    ],
     "essential": true,
     "portMappings": [
       {
