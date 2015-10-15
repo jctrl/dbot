@@ -43,7 +43,31 @@ resource "aws_ecs_cluster" "dbot-ecs-cluster-us-east" {
 
 resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
   family = "dbot-ecs-family-us-east"
-  container_definitions = "${file("./build//task-definitions/build.json")}"
+  container_definitions = <<EOF
+{
+[
+  {
+    "name": "dbot-ecs-service-us-east",
+    "image": "listenrightmeow/dbot:latest",
+    "cpu": 128,
+    "memory": 128,
+    "environment": [
+      {
+        "name" : "HUBOT_SLACK_TOKEN",
+        "value" : "${var.HUBOT_SLACK_TOKEN}"
+      }
+    ],
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ]
+  }
+]
+}
+EOF
 }
 
 resource "aws_elb" "dbot-elastic-lb-us-east" {

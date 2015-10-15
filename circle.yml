@@ -20,7 +20,7 @@ dependencies:
 test:
   override:
     - docker run -d listenrightmeow/dbot:latest
-    - ./terraform plan -out=terraform.plan -var "ssh_key=`echo $AWS_SSH_KEY`" -var "access_key=`echo $TERRAFORM_AWS_ACCESS_KEY`" -var "secret_key=`echo $TERRAFORM_AWS_SECRET_KEY`" ./terraform/build
+    - ./terraform plan -out=terraform.plan -var "ssh_key=`echo $AWS_SSH_KEY`" -var "access_key=`echo $TERRAFORM_AWS_ACCESS_KEY`" -var "secret_key=`echo $TERRAFORM_AWS_SECRET_KEY`" -var "HUBOT_SLACK_TOKEN=`echo $HUBOT_SLACK_TOKEN`" ./terraform/build
 
 deployment:
   production:
