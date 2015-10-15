@@ -1,0 +1,5 @@
+default: ['upload']
+
+upload:
+ - 'config'
+ - 's3:keys'
