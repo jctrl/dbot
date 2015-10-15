@@ -1,12 +1,12 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  access_key = "${var.TERRAFORM_AWS_ACCESS_KEY}"
+  secret_key = "${var.TERRAFORM_AWS_SECRET_KEY}"
   region = "${var.region}"
 }
 
 resource "aws_key_pair" "dbot-deployer-us-east" {
   key_name = "dbot-deployer-us-east-key"
-  public_key = "${var.ssh_key}"
+  public_key = "${var.AWS_SSH_KEY}"
 }
 
 resource "aws_iam_instance_profile" "dbot-iam-instance-profile-us-east" {
