@@ -1,8 +1,3 @@
-variable "ssh_key" {}
-variable "access_key" {}
-variable "secret_key" {}
-variable "docker_version" {}
-
 variable "region" {
 	default = "us-east-1"
 }
