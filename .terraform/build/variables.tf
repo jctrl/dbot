@@ -1,3 +1,9 @@
+variable "HUBOT_SLACK_TOKEN" {}
+variable "HUBOT_AUTH_ADMIN" {}
+variable "TERRAFORM_AWS_ACCESS_KEY" {}
+variable "TERRAFORM_AWS_SECRET_KEY" {}
+variable "AWS_SSH_KEY" {}
+
 variable "region" {
 	default = "us-east-1"
 }
