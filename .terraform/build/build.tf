@@ -56,11 +56,11 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
         "value" : "${var.HUBOT_SLACK_TOKEN}"
       }
     ],
-    "essential": true,
+    "privileged": true,
     "portMappings": [
       {
-        "containerPort": 80,
-        "hostPort": 80
+        "containerPort": 8080,
+        "hostPort": 8080
       }
     ]
   }
@@ -73,9 +73,9 @@ resource "aws_elb" "dbot-elastic-lb-us-east" {
   cross_zone_load_balancing = true
 
   listener {
-    instance_port = 80
+    instance_port = 8080
     instance_protocol = "http"
-    lb_port = 80
+    lb_port = 8080
     lb_protocol = "http"
   }
 
@@ -95,7 +95,7 @@ resource "aws_ecs_service" "dbot-ecs-service-us-east" {
   load_balancer {
     elb_name = "${aws_elb.dbot-elastic-lb-us-east.name}"
     container_name = "dbot-ecs-service-us-east"
-    container_port = 80
+    container_port = 8080
   }
 }
 
@@ -124,8 +124,8 @@ resource "aws_security_group" "dbot-security-group-us-east" {
   ingress {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    from_port = 80
-    to_port = 80
+    from_port = 8080
+    to_port = 8080
   }
 
   ingress {
@@ -159,8 +159,8 @@ resource "aws_security_group" "dbot-security-group-us-east" {
   egress {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    from_port = 80
-    to_port = 80
+    from_port = 8080
+    to_port = 8080
   }
 
   egress {
@@ -186,8 +186,8 @@ resource "aws_network_acl" "dbot-network-acl-us-east" {
     rule_no = 100
     action = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port = 80
-    to_port = 80
+    from_port = 8080
+    to_port = 8080
   }
 
   ingress {
@@ -231,8 +231,8 @@ resource "aws_network_acl" "dbot-network-acl-us-east" {
     rule_no = 100
     action = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port = 80
-    to_port = 80
+    from_port = 8080
+    to_port = 8080
   }
 
   egress {

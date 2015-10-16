@@ -1,9 +1,9 @@
 .DS_STORE
-env.sh
-
-/config
-/node_modules
 
 *.tfstate.backup
 *.tfstate
 *.tfvars
+
+/config
+/node_modules
+/.terraform/*.plan
