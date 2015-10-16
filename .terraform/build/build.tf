@@ -44,7 +44,6 @@ resource "aws_ecs_cluster" "dbot-ecs-cluster-us-east" {
 resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
   family = "dbot-ecs-family-us-east"
   container_definitions = <<EOF
-{
 [
   {
     "name": "dbot-ecs-service-us-east",
@@ -66,7 +65,6 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
     ]
   }
 ]
-}
 EOF
 }
 
