@@ -7,9 +7,7 @@ dependencies:
     - "~/docker"
 
   pre:
-    - pip install awscli
-    - wget https://dl.bintray.com/mitchellh/terraform/terraform_0.6.4_linux_amd64.zip
-    - unzip terraform_0.6.4_linux_amd64.zip
+    - cd .terraform && wget https://dl.bintray.com/mitchellh/terraform/terraform_0.6.4_linux_amd64.zip && unzip terraform_0.6.4_linux_amd64.zip
 
   override:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
@@ -21,10 +19,10 @@ test:
   override:
     - docker run -d listenrightmeow/dbot:latest
     - aws s3 cp s3://dla-dbot/.terraform/terraform.tfvars ./
-    - ./terraform plan -out=terraform.plan ./terraform/build
+    - cd .terraform/ && ./terraform plan -out=terraform.plan build
 
 deployment:
   production:
     branch: master
     commands:
-      - ./terraform apply terraform.plan
+      - cd .terraform/ && ./terraform apply terraform.plan
