@@ -6,9 +6,6 @@ dependencies:
   cache_directories:
     - "~/docker"
 
-  pre:
-    - ./scripts/terraform.sh
-
   override:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker info
@@ -18,7 +15,7 @@ dependencies:
 test:
   override:
     - docker run -d listenrightmeow/dbot:latest
-    - ./scripts/tfvars.sh
+    - ./scripts/terraform.sh
 
 deployment:
   production:
