@@ -9,7 +9,7 @@ dependencies:
   pre:
     - pip install awscli
     - wget https://dl.bintray.com/mitchellh/terraform/terraform_0.6.4_linux_amd64.zip
-    - unzip terraform_0.6.3_linux_amd64.zip
+    - unzip terraform_0.6.4_linux_amd64.zip
 
   override:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
