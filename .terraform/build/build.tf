@@ -46,10 +46,17 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
   container_definitions = <<EOF
 [
   {
-    "name": "dbot-ecs-service-us-east",
+    "name": "dbot-redis",
+    "image": "redis",
+    "cpu": 2048,
+    "memory": 2048,
+    "privileged": true
+  },
+  {
+    "name": "dbot-slackbot",
     "image": "listenrightmeow/dbot:latest",
-    "cpu": 256,
-    "memory": 256,
+    "cpu": 512,
+    "memory": 412,
     "environment": [
       {
         "name" : "HUBOT_SLACK_TOKEN",
@@ -65,7 +72,8 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
         "containerPort": 8080,
         "hostPort": 8080
       }
-    ]
+    ],
+    "links": ["dbot-redis:redis"]
   }
 ]
 EOF

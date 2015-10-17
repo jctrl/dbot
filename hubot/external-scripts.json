@@ -1,6 +1,7 @@
 [
+	"hubot-redis-brain",
 	"hubot-standup-alarm",
 	"hubot-auth",
 	"hubot-youtube",
-	"hubot-s3-brain"
+	"hubot-business-cat"
 ]
