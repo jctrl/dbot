@@ -54,6 +54,9 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
       {
         "name" : "HUBOT_SLACK_TOKEN",
         "value" : "${var.HUBOT_SLACK_TOKEN}"
+      },{
+        "name" : "HUBOT_AUTH_ADMIN",
+        "value" : "${var.HUBOT_AUTH_ADMIN}"
       }
     ],
     "privileged": true,
