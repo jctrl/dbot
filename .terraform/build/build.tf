@@ -105,7 +105,7 @@ resource "aws_ecs_service" "dbot-ecs-service-us-east" {
 
   load_balancer {
     elb_name = "${aws_elb.dbot-elastic-lb-us-east.name}"
-    container_name = "dbot-ecs-service-us-east"
+    container_name = "dbot-slackbot"
     container_port = 8080
   }
 }
