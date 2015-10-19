@@ -56,7 +56,7 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
     "name": "dbot-slackbot",
     "image": "listenrightmeow/dbot:latest",
     "cpu": 512,
-    "memory": 412,
+    "memory": 512,
     "environment": [
       {
         "name" : "HUBOT_SLACK_TOKEN",
