@@ -4,6 +4,10 @@ variable "HUBOT_YOUTUBE_API_KEY" {}
 variable "TERRAFORM_AWS_ACCESS_KEY" {}
 variable "TERRAFORM_AWS_SECRET_KEY" {}
 variable "AWS_SSH_KEY" {}
+variable "HUBOT_S3_BRAIN_ACCESS_KEY_ID" {}
+variable "HUBOT_S3_BRAIN_SECRET_ACCESS_KEY" {}
+variable "HUBOT_S3_BRAIN_BUCKET" {}
+variable "HUBOT_S3_BRAIN_FILE_PATH" {}
 
 variable "region" {
 	default = "us-east-1"
@@ -14,7 +18,7 @@ variable "key_name" {
 }
 
 variable "instance_type" {
-	default = "t2.medium"
+	default = "t2.micro"
 }
 
 variable "amis" {

@@ -46,17 +46,10 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
   container_definitions = <<EOF
 [
   {
-    "name": "dbot-redis",
-    "image": "redis",
-    "cpu": 1024,
-    "memory": 3072,
-    "privileged": true
-  },
-  {
     "name": "dbot-slackbot",
     "image": "listenrightmeow/dbot:latest",
-    "cpu": 512,
-    "memory": 512,
+    "cpu": 1014,
+    "memory": 1014,
     "environment": [
       {
         "name" : "HUBOT_SLACK_TOKEN",
@@ -73,7 +66,19 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
       },{
         "name" : "HUBOT_YOUTUBE_DETERMINISTIC_RESULTS",
         "value" : "true"
-      }
+      },{
+        "name" : "HUBOT_S3_BRAIN_ACCESS_KEY_ID",
+        "value" : "${var.HUBOT_S3_BRAIN_ACCESS_KEY_ID}"
+      },{
+        "name" : "HUBOT_S3_BRAIN_SECRET_ACCESS_KEY",
+        "value" : "${var.HUBOT_S3_BRAIN_SECRET_ACCESS_KEY}"
+      },{
+        "name" : "HUBOT_S3_BRAIN_BUCKET",
+        "value" : "${var.HUBOT_S3_BRAIN_BUCKET}"
+      },{
+        "name" : "HUBOT_S3_BRAIN_FILE_PATH",
+        "value" : "${var.HUBOT_S3_BRAIN_FILE_PATH}"
+      },
     ],
     "privileged": true,
     "portMappings": [
@@ -81,8 +86,7 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
         "containerPort": 8080,
         "hostPort": 8080
       }
-    ],
-    "links": ["dbot-redis:redis"]
+    ]
   }
 ]
 EOF

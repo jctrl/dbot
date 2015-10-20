@@ -16,7 +16,7 @@ WORKDIR /hubot
 RUN yo hubot --owner="mike.dyer@deutschinc.com" --name="dbot" --description="Donuts. Lots of donuts." --defaults
 
 RUN npm install hubot-slack --save && npm install
-RUN npm install hubot-redis-brain --save && npm install
+RUN npm install hubot-s3-brain --save && npm install
 RUN npm install hubot-auth --save && npm install
 RUN npm install hubot-standup-alarm --save && npm install
 RUN npm install hubot-youtube --save && npm install
@@ -25,4 +25,4 @@ RUN npm install hubot-business-cat --save
 ADD hubot/hubot-scripts.json /hubot/
 ADD hubot/external-scripts.json /hubot/
 
-CMD ["/bin/sh", "-c", "export REDIS_URL=redis://$REDIS_PORT_6379_TCP_ADDR:6379/redis; bin/hubot --adapter slack"]
+CMD ["/bin/sh", "-c", "bin/hubot --adapter slack"]
