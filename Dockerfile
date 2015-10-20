@@ -19,9 +19,7 @@ RUN npm install hubot-s3-brain --save && npm install
 RUN npm install hubot-auth --save && npm install
 RUN npm install hubot-standup-alarm --save && npm install
 RUN npm install hubot-youtube --save && npm install
-RUN npm install hubot-business-cat --save
+RUN npm install hubot-business-cat --save && npm install
 
 ADD hubot/hubot-scripts.json /hubot/
 ADD hubot/external-scripts.json /hubot/
-
-CMD ["/bin/sh", "-c", "bin/hubot --adapter slack"]

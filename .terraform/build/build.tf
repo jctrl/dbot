@@ -48,8 +48,8 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
   {
     "name": "dbot-slackbot",
     "image": "listenrightmeow/dbot:latest",
-    "cpu": 1014,
-    "memory": 1014,
+    "cpu": 128,
+    "memory": 128,
     "environment": [
       {
         "name" : "HUBOT_SLACK_TOKEN",
@@ -78,7 +78,7 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
       },{
         "name" : "HUBOT_S3_BRAIN_FILE_PATH",
         "value" : "${var.HUBOT_S3_BRAIN_FILE_PATH}"
-      },
+      }
     ],
     "privileged": true,
     "portMappings": [
@@ -86,7 +86,8 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
         "containerPort": 8080,
         "hostPort": 8080
       }
-    ]
+    ],
+    "command": ["/bin/sh", "-c", "bin/hubot --adapter slack"]
   }
 ]
 EOF
