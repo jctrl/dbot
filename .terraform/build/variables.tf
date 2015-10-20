@@ -1,5 +1,6 @@
 variable "HUBOT_SLACK_TOKEN" {}
 variable "HUBOT_AUTH_ADMIN" {}
+variable "HUBOT_YOUTUBE_API_KEY" {}
 variable "TERRAFORM_AWS_ACCESS_KEY" {}
 variable "TERRAFORM_AWS_SECRET_KEY" {}
 variable "AWS_SSH_KEY" {}

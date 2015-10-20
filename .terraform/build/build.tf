@@ -48,8 +48,8 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
   {
     "name": "dbot-redis",
     "image": "redis",
-    "cpu": 2048,
-    "memory": 2048,
+    "cpu": 1024,
+    "memory": 3072,
     "privileged": true
   },
   {
@@ -64,6 +64,15 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
       },{
         "name" : "HUBOT_AUTH_ADMIN",
         "value" : "${var.HUBOT_AUTH_ADMIN}"
+      },{
+        "name" : "HUBOT_STANDUP_PREPEND",
+        "value" : "@group: "
+      },{
+        "name" : "HUBOT_YOUTUBE_API_KEY",
+        "value" : "${var.HUBOT_YOUTUBE_API_KEY}"
+      },{
+        "name" : "HUBOT_YOUTUBE_DETERMINISTIC_RESULTS",
+        "value" : "true"
       }
     ],
     "privileged": true,

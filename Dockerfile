@@ -25,4 +25,4 @@ RUN npm install hubot-business-cat --save
 ADD hubot/hubot-scripts.json /hubot/
 ADD hubot/external-scripts.json /hubot/
 
-CMD ["/bin/sh", "-c", "bin/hubot --adapter slack"]
+CMD ["/bin/sh", "-c", "export REDIS_URL=redis://$REDIS_PORT_6379_TCP_ADDR:6379/redis; bin/hubot --adapter slack"]
