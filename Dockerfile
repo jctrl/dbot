@@ -3,17 +3,16 @@ FROM ubuntu
 RUN apt-get update
 RUN apt-get -y install expect redis-server nodejs npm python-pip
 RUN pip install awscli
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
 RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN npm install -g hubot coffee-script yo generator-hubot
-
+RUN npm install -g coffee-script yo generator-hubot
 RUN useradd -d /hubot -m -s /bin/bash -U hubot
+
 USER hubot
 WORKDIR /hubot
 
-RUN yo hubot --owner="mike.dyer@deutschinc.com" --name="dbot" --description="Donuts. Lots of donuts." --defaults
+RUN yo hubot --owner="listenrightmeow <mdyer@n9nemedia.net>" --name="dbot" --description="Meow." --defaults
 
 RUN npm install hubot-slack --save && npm install
 RUN npm install hubot-s3-brain --save && npm install
