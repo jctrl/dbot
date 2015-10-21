@@ -23,4 +23,4 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push listenrightmeow/dbot:latest
-      - cd .terraform/ && ./terraform apply terraform.plan
+      - aws ecs run-task --cluster dbot-ecs-cluster-us-east --task-definition dbot-ecs-family-us-east --count 1

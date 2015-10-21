@@ -17,12 +17,23 @@ Install [Terraform](https://terraform.io/).
 
 ```
 cd .terraform
-terraform apply -var-file=build/terraform.tfvars build
+terraform apply -var-file=terraform.tfvars build
 ```
 
 ### terraform.tfvars
 
-Be sure to push *.tfvars to S3 for CircleCI retrieval
+Be sure to push *.tfvars to S3 for CircleCI retrieval or the build will fail
+
+```
+nvm install
+npm i -g grunt-cli
+npm i
+```
+
+```
+nvm use
+grunt
+```
 
 ```
 HUBOT_SLACK_TOKEN = "xoxb-XXXXXX-XXXXXX"
