@@ -1,3 +1,0 @@
-module "aws" {
-  source = "./aws"
-}
