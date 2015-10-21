@@ -17,7 +17,7 @@ Install [Terraform](https://terraform.io/).
 
 ```
 cd .terraform
-terraform apply -var-file=aws/terraform.tfvars build
+terraform apply -var-file=aws/terraform.tfvars aws
 ```
 
 ### terraform.tfvars
@@ -72,15 +72,23 @@ The policy below is what was used for unique S3 bucket access for the Grunt task
 ##### config/aws.json
 ```
 {
-	"TERRAFORM_AWS_ACCESS_KEY" : "XXXXXX",
-	"TERRAFORM_AWS_SECRET_KEY" : "XXXXXX"
+    "TERRAFORM_AWS_ACCESS_KEY" : "XXXXXX",
+    "TERRAFORM_AWS_SECRET_KEY" : "XXXXXX"
 }
 ```
 
 ### Updates
 
-If you're planning on making any changes to any VPC (network tables, elastic ip, etc), any modifications are made to the task definition or if you're adding any new environment variables those changes will need to be pushed to AWS.
+If you're changing/adding any additional environment variables to `terraform.tfvars` you will need to push those changes to AWS before pushing changes to Github.
+
+Modifications should follow continuous deployment standards at all times.
+
+- Create and issue all work to a feature branch
+- When ready to be commited, issue a pull-request. This will trigger Circle CI and validate if your changes can be merged to master
+- Check your pull request status. If Circle CI passes, merge to master. This will trigger an Atlas/Terraform build.
+
+[Atlas]([https://atlas.hashicorp.com/listenrightmeow/environments/dbot) manages all build states and artifacts. Atlas will automatically deploy to AWS once merged with master.
 
 ```
-terraform apply -var-file=aws/terraform.tfvars build
+terraform apply -var-file=aws/terraform.tfvars aws
 ```

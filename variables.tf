@@ -6,8 +6,6 @@ variable "TERRAFORM_AWS_SECRET_KEY" {}
 variable "AWS_SSH_KEY" {}
 variable "HUBOT_S3_BRAIN_ACCESS_KEY_ID" {}
 variable "HUBOT_S3_BRAIN_SECRET_ACCESS_KEY" {}
-variable "HUBOT_S3_BRAIN_BUCKET" {}
-variable "HUBOT_S3_BRAIN_FILE_PATH" {}
 
 variable "region" {
 	default = "us-east-1"
@@ -29,4 +27,12 @@ variable "amis" {
 
 variable "availability" {
 	default = "us-east-1a"
+}
+
+variable "HUBOT_S3_BRAIN_BUCKET" {
+	default = "dla-dbot"
+}
+
+variable "HUBOT_S3_BRAIN_FILE_PATH" {
+	default = "brain/dump.json"
 }
