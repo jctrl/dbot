@@ -86,8 +86,7 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
         "containerPort": 8080,
         "hostPort": 8080
       }
-    ],
-    "command": ["/bin/sh", "-c", "bin/hubot --adapter slack"]
+    ]
   }
 ]
 EOF
