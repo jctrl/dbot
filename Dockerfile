@@ -23,3 +23,5 @@ RUN npm install hubot-business-cat --save && npm install
 
 ADD hubot/hubot-scripts.json /hubot/
 ADD hubot/external-scripts.json /hubot/
+
+CMD ["/bin/sh", "-c", "bin/hubot --adapter slack"]
