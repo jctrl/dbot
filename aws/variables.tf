@@ -30,7 +30,3 @@ variable "amis" {
 variable "availability" {
 	default = "us-east-1a"
 }
-
-variable "purge" {
-	default = "true"
-}
