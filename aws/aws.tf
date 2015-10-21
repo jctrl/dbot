@@ -306,5 +306,5 @@ resource "aws_instance" "dbot-aws-ec2-us-east" {
   key_name = "${aws_key_pair.dbot-deployer-us-east.key_name}"
   iam_instance_profile = "${aws_iam_instance_profile.dbot-iam-instance-profile-us-east.name}"
   vpc_security_group_ids = ["${aws_security_group.dbot-security-group-us-east.id}"]
-  user_data = "${file("./scripts/config.sh")}"
+  user_data = "${file("./aws/scripts/config.sh")}"
 }
