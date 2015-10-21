@@ -8,9 +8,6 @@ dependencies:
 
   override:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
-    - echo "[default]" >> ~/.aws/config
-    - echo "output = json" >> ~/.aws/config
-    - echo "region = us-east-1" >> ~/.aws/config
     - docker info
     - docker build -t listenrightmeow/dbot:latest .
     - mkdir -p ~/docker; docker save listenrightmeow/dbot:latest > ~/docker/image.tar
@@ -26,4 +23,6 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push listenrightmeow/dbot:latest
-      - aws ecs run-task --cluster dbot-ecs-cluster-us-east --task-definition dbot-ecs-family-us-east --count 1
+      - echo `aws --region us-east-1 --output json ecs list-container-instances --cluster dbot-ecs-cluster-us-east | python -c 'import sys, json; print json.load(sys.stdin)["containerInstanceArns"][0]'` >> ./.containerInstanceArns
+      - aws --region us-east-1 ecs deregister-container-instance --cluster dbot-ecs-cluster-us-east --container-instance `cat .containerInstanceArns | sed s/\\//\\n/g` --force
+      - aws --region us-east-1 ecs run-task --cluster dbot-ecs-cluster-us-east --task-definition dbot-ecs-family-us-east --count 1
