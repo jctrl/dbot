@@ -76,3 +76,11 @@ The policy below is what was used for unique S3 bucket access for the Grunt task
 	"TERRAFORM_AWS_SECRET_KEY" : "XXXXXX"
 }
 ```
+
+### Updates
+
+If you're planning on making any changes to any VPC (network tables, elastic ip, etc), any modifications are made to the task definition or if you're adding any new environment variables those changes will need to be pushed to AWS.
+
+```
+terraform apply -var-file=terraform.tfvars build
+```
