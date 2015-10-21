@@ -1,7 +1,15 @@
 [
 	"hubot-s3-brain",
-	"hubot-standup-alarm",
 	"hubot-auth",
+	"hubot-diagnostics",
+	"hubot-help",
+	"hubot-google-images",
+	"hubot-google-translate",
+	"hubot-pugme",
+	"hubot-maps",
+	"hubot-rules",
+	"hubot-shipit",
+	"hubot-standup-alarm",
 	"hubot-youtube",
 	"hubot-business-cat"
 ]
