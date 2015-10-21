@@ -6,9 +6,11 @@ CircleCI is utilized to verify docker container integrity, then will call Terraf
 
 `terraform destroy` was used many times while discovering how to make this repo work, read their docs relevant to AWS [here](https://terraform.io/docs/providers/aws/index.html).
 
+To run Hubot with minimal functionality in a local environment:
+
 ```
 docker build -t dbot .
-docker run -e HUBOT_SLACK_TOKEN=$HUBOT_SLACK_TOKEN -d listenrightmeow/dbot
+docker run -e HUBOT_SLACK_TOKEN=$HUBOT_SLACK_TOKEN -d dbot
 ```
 
 ### Initial infrastructure build
@@ -17,12 +19,65 @@ Install [Terraform](https://terraform.io/).
 
 ```
 cd .terraform
-terraform apply -var-file=aws/terraform.tfvars aws
+terraform apply
+```
+
+### Requirements
+
+If you're part of the organization that dbot runs on, you might need access to Atlas. Sign up and send me your handle so I can add you to the repo (if necessary).
+
+If you're not part of the organization, I've hooked up [Atlas]([https://atlas.hashicorp.com/listenrightmeow/environments/dbot) as a webhook to this repository to complete continuous deployment.
+
+### Releases
+
+Upon issuing a pull request :
+
+- Circle CI verifies the Docker build; we want to make sure the guest of honor can breathe
+- Atlas will take the [terraform](https://terraform.io/) files and verify that there are no breaking changes to the them before trying to deploy to AWS.
+
+Atlas will automatically deploy to AWs with no further interaction needed. If both tests pass, make sure to merge with master.
+
+### Updates
+
+If you're changing/adding any additional environment variables to `terraform.tfvars` you will need to push those changes to AWS before pushing changes to Github (how-to below).
+
+Modifications should follow continuous deployment standards at all times.
+
+```
+terraform apply
 ```
 
 ### terraform.tfvars
 
+This is what this project's environment variables look like. If you're going to clone and run this repository directly, you'll need these variables at a bare minimum.
+
+File location should be at the root of the project `file-name.tfvars`
+
+```
+HUBOT_SLACK_TOKEN = ""
+HUBOT_AUTH_ADMIN = ""
+HUBOT_YOUTUBE_API_KEY = ""
+HUBOT_S3_BRAIN_ACCESS_KEY_ID = ""
+HUBOT_S3_BRAIN_SECRET_ACCESS_KEY = ""
+TERRAFORM_AWS_ACCESS_KEY = ""
+TERRAFORM_AWS_SECRET_KEY = ""
+AWS_SSH_KEY = ""
+ATLAS_TOKEN = ""
+```
+
 Be sure to push *.tfvars to S3 for CircleCI retrieval or the build will fail
+
+Grunt AWS credentials (config/aws.json):
+
+```json
+{
+    "TERRAFORM_AWS_ACCESS_KEY" : "",
+    "TERRAFORM_AWS_SECRET_KEY" : ""
+}
+```
+
+Path definition of this file is in `grunt/aws.js` & `grunt/config.js`.
+
 
 ```
 nvm install
@@ -75,20 +130,4 @@ The policy below is what was used for unique S3 bucket access for the Grunt task
     "TERRAFORM_AWS_ACCESS_KEY" : "XXXXXX",
     "TERRAFORM_AWS_SECRET_KEY" : "XXXXXX"
 }
-```
-
-### Updates
-
-If you're changing/adding any additional environment variables to `terraform.tfvars` you will need to push those changes to AWS before pushing changes to Github.
-
-Modifications should follow continuous deployment standards at all times.
-
-- Create and issue all work to a feature branch
-- When ready to be commited, issue a pull-request. This will trigger Circle CI and validate if your changes can be merged to master
-- Check your pull request status. If Circle CI passes, merge to master. This will trigger an Atlas/Terraform build.
-
-[Atlas]([https://atlas.hashicorp.com/listenrightmeow/environments/dbot) manages all build states and artifacts. Atlas will automatically deploy to AWS once merged with master.
-
-```
-terraform apply -var-file=aws/terraform.tfvars aws
 ```
