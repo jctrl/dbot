@@ -23,6 +23,3 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push listenrightmeow/dbot:latest
-      - echo `aws --region us-east-1 --output json ecs list-container-instances --cluster dbot-ecs-cluster-us-east | python -c 'import sys, json; print json.load(sys.stdin)["containerInstanceArns"][0]'` >> ./.containerInstanceArns
-      - sed -i s/\\//\\n/g .containerInstanceArns
-      - aws --region us-east-1 ecs deregister-container-instance --cluster dbot-ecs-cluster-us-east --container-instance `sed '2q;d' .containerInstanceArns` --force
