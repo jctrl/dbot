@@ -6,4 +6,4 @@
 /config
 /hubot/src
 /node_modules
-/.terraform/*.plan
+/.terraform
