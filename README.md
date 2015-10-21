@@ -33,10 +33,10 @@ If you intend on utilizing to use the Terraform configs to release infrastructur
 
 Upon issuing a pull request :
 
-- Circle CI verifies the Docker build; we want to make sure the guest of honor can breathe
+- Circle CI verifies the Docker build; we want to make sure the guest of honor can breathe.
 - Atlas will take the [terraform](https://terraform.io/) files and verify that there are no breaking changes to the them before trying to deploy to AWS.
 
-Atlas will automatically deploy to AWs with no further interaction needed. If both tests pass, make sure to merge with master.
+Atlas will automatically deploy to AWS with no further interaction needed. If both tests pass, make sure to merge with master.
 
 ### Updates
 
@@ -44,11 +44,7 @@ If you're changing/adding any additional environment variables to `terraform.tfv
 
 Modifications should follow continuous deployment standards at all times.
 
-```
-terraform apply
-```
-
-### terraform.tfvars
+### *.tfvars
 
 This is what this project's environment variables look like. If you're going to clone and run this repository directly, you'll need these variables at a bare minimum.
 
@@ -65,8 +61,6 @@ TERRAFORM_AWS_SECRET_KEY = ""
 AWS_SSH_KEY = ""
 ATLAS_TOKEN = ""
 ```
-
-Be sure to push *.tfvars to S3 for CircleCI retrieval or the build will fail
 
 Grunt AWS credentials (config/aws.json):
 
