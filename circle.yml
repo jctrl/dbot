@@ -15,7 +15,6 @@ dependencies:
 test:
   override:
     - docker run -d listenrightmeow/dbot:latest
-    - ./scripts/terraform.sh
 
 deployment:
   production:

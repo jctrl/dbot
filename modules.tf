@@ -1,3 +1,3 @@
 module "aws" {
-  source = "./aws/aws.tf"
+  source = "./aws"
 }
