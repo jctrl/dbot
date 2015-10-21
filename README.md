@@ -1,18 +1,3 @@
-This repo serves as the discovery process to set up infrastructure to utilize [Amazon ECS](https://aws.amazon.com/ecs/) and [Docker](https://www.docker.com/).
-
-Terraform was used to scaffold the AWS infrastructure that is required to get an automated containter to production.
-
-CircleCI is utilized to verify docker container integrity, then will call Terraform to launch the infrastructure to AWS.
-
-`terraform destroy` was used many times while discovering how to make this repo work, read their docs relevant to AWS [here](https://terraform.io/docs/providers/aws/index.html).
-
-To run Hubot with minimal functionality in a local environment:
-
-```
-docker build -t dbot .
-docker run -e HUBOT_SLACK_TOKEN=$HUBOT_SLACK_TOKEN -d dbot
-```
-
 ### Initial infrastructure build
 
 Install [Terraform](https://terraform.io/).
@@ -22,11 +7,25 @@ cd .terraform
 terraform apply
 ```
 
+To run Hubot with minimal functionality in a local environment:
+
+```
+docker build -t dbot .
+docker run -e HUBOT_SLACK_TOKEN=$HUBOT_SLACK_TOKEN -d dbot
+```
+
 ### Requirements
 
-If you're part of the organization that dbot runs on, you might need access to Atlas. Sign up and send me your handle so I can add you to the repo (if necessary).
+- [AWS](https://aws.amazon.com/)
+- [Docker](https://www.docker.com/)
+- [Terraform](https://terraform.io/)
+- An [Atlas]([https://atlas.hashicorp.com/) environment and Github integration (for automated builds)
 
-If you're not part of the organization, I've hooked up [Atlas]([https://atlas.hashicorp.com/listenrightmeow/environments/dbot) as a webhook to this repository to complete continuous deployment.
+It is suggested that you create a dedicated IAM profile to manage Terraform with sufficient permissions to move around between [EC2](https://aws.amazon.com/ec2/), [ECS](https://aws.amazon.com/ecs/), [ELB](https://aws.amazon.com/elasticloadbalancing/), [S3](https://aws.amazon.com/s3/) and [VPC](https://aws.amazon.com/vpc/)
+
+### Notes
+
+If you intend on utilizing to use the Terraform configs to release infrastructure into any EC2 instance that's not T2, VPC config rulesets are not required (but they are suggested).
 
 ### Releases
 
