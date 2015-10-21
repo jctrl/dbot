@@ -8,7 +8,7 @@ module.exports = {
     options: {
       gzip: false
     },
-    cwd: '.terraform/',
+    cwd: 'aws',
     src: ['terraform.tfvars'],
     dest: '.terraform/'
   }
