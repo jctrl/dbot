@@ -1,3 +1,0 @@
-module "build" {
-  source = "./build"
-}

@@ -24,5 +24,5 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push listenrightmeow/dbot:latest
       - echo `aws --region us-east-1 --output json ecs list-container-instances --cluster dbot-ecs-cluster-us-east | python -c 'import sys, json; print json.load(sys.stdin)["containerInstanceArns"][0]'` >> ./.containerInstanceArns
-      - aws --region us-east-1 ecs deregister-container-instance --cluster dbot-ecs-cluster-us-east --container-instance `cat .containerInstanceArns | sed s/\\//\\n/g` --force
-      - aws --region us-east-1 ecs run-task --cluster dbot-ecs-cluster-us-east --task-definition dbot-ecs-family-us-east --count 1
+      - sed -i s/\\//\\n/g .containerInstanceArns
+      - aws --region us-east-1 ecs deregister-container-instance --cluster dbot-ecs-cluster-us-east --container-instance `sed '2q;d' .containerInstanceArns` --force
