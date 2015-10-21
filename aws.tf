@@ -16,25 +16,25 @@ resource "aws_iam_instance_profile" "dbot-iam-instance-profile-us-east" {
 
 resource "aws_iam_role" "dbot-ecs-service-iam-role-us-east" {
   name = "dbot-ecs-service-iam-role-us-east"
-  assume_role_policy = "${file("./iam/policies/ecs/service/iam_role.json")}"
+  assume_role_policy = "${file("./aws/iam/policies/ecs/service/iam_role.json")}"
 }
 
 resource "aws_iam_role_policy" "dbot-ecs-service-iam-policy-us-east" {
   name = "dbot-ecs-service-iam-policy-us-east"
   role = "${aws_iam_role.dbot-ecs-service-iam-role-us-east.id}"
-  policy = "${file("./iam/policies/ecs/service/iam_policy.json")}"
+  policy = "${file("./aws/iam/policies/ecs/service/iam_policy.json")}"
 }
 
 resource "aws_iam_role" "dbot-ecs-instance-iam-role-us-east" {
   name = "dbot-ecs-instance-iam-role-us-east"
   path = "/"
-  assume_role_policy = "${file("./iam/policies/ecs/instance/iam_role.json")}"
+  assume_role_policy = "${file("./aws/iam/policies/ecs/instance/iam_role.json")}"
 }
 
 resource "aws_iam_role_policy" "dbot-ecs-instance-iam-policy-us-east" {
   name = "dbot-ecs-instance-iam-policy-us-east"
   role = "${aws_iam_role.dbot-ecs-instance-iam-role-us-east.name}"
-  policy = "${file("./iam/policies/ecs/instance/iam_policy.json")}"
+  policy = "${file("./aws/iam/policies/ecs/instance/iam_policy.json")}"
 }
 
 resource "aws_ecs_cluster" "dbot-ecs-cluster-us-east" {
@@ -306,5 +306,5 @@ resource "aws_instance" "dbot-aws-ec2-us-east" {
   key_name = "${aws_key_pair.dbot-deployer-us-east.key_name}"
   iam_instance_profile = "${aws_iam_instance_profile.dbot-iam-instance-profile-us-east.name}"
   vpc_security_group_ids = ["${aws_security_group.dbot-security-group-us-east.id}"]
-  user_data = "${file("./scripts/config.sh")}"
+  user_data = "${file("./aws/scripts/config.sh")}"
 }
