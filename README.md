@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/listenrightmeow/dbot/tree/master.svg?style=svg)](https://circleci.com/gh/listenrightmeow/dbot/tree/master)
+[![Circle CI](https://circleci.com/gh/listenrightmeow/dbot.svg?style=svg&circle-token=b1cbc48402c15f0120515fab3a261ea857f2bbec)](https://circleci.com/gh/listenrightmeow/dbot)
 
 ### Initial infrastructure build
 
