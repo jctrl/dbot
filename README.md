@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/listenrightmeow/dbot/tree/master.svg?style=svg)](https://circleci.com/gh/listenrightmeow/dbot/tree/master)
+
 ### Initial infrastructure build
 
 Install [Terraform](https://terraform.io/).
