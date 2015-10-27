@@ -10,17 +10,17 @@ resource "aws_key_pair" "dbot-deployer-us-east" {
 }
 
 module "iam" {
-  source = "./modules/iam"
+  source = "./modules/aws/iam"
 }
 
 module "elb" {
-  source = "./modules/elb"
+  source = "./modules/aws/elb"
 }
 
 module "vpc" {
-  source = "./modules/vpc"
+  source = "./modules/aws/vpc"
 }
 
 module "ec2" {
-  source = "./modules/ec2"
+  source = "./modules/aws/ec2"
 }
