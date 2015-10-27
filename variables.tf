@@ -32,7 +32,3 @@ variable "availability" {
 variable "HUBOT_S3_BRAIN_BUCKET" {
 	default = "dla-dbot"
 }
-
-variable "HUBOT_S3_BRAIN_FILE_PATH" {
-	default = "brain/dump.json"
-}

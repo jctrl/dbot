@@ -1,9 +1,13 @@
-resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
-  family = "dbot-ecs-family-us-east"
+resource "aws_ecs_cluster" "${var.prefix}-ecs-cluster-us-east" {
+  name = "${var.prefix}-ecs-cluster-us-east"
+}
+
+resource "aws_ecs_task_definition" "${var.prefix}-ecs-definition-us-east" {
+  family = "${var.prefix}-ecs-family-us-east"
   container_definitions = <<EOF
 [
   {
-    "name": "dbot-slackbot",
+    "name": "${var.prefix}-slackbot",
     "image": "listenrightmeow/dbot:latest",
     "cpu": 128,
     "memory": 128,
@@ -43,17 +47,16 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
         "containerPort": 8080,
         "hostPort": 8080
       }
-    ],
-    "command" : ["/bin/sh", "-c", "bin/hubot --adapter slack"]
+    ]
   }
 ]
 EOF
 }
 
-resource "aws_ecs_service" "dbot-ecs-service-us-east" {
-  name = "dbot-service"
-  cluster = "${aws_ecs_cluster.dbot-ecs-cluster-us-east.id}"
-  task_definition = "${aws_ecs_task_definition.dbot-ecs-definition-us-east.arn}"
+resource "aws_ecs_service" "${var.prefix}-ecs-service-us-east" {
+  name = "${var.prefix}-service"
+  cluster = "${aws_ecs_cluster.${var.prefix}-ecs-cluster-us-east.id}"
+  task_definition = "${aws_ecs_task_definition.${var.prefix}-ecs-definition-us-east.arn}"
   desired_count = 1
 
   iam_role = "${aws_iam_role.dbot-ecs-service-iam-role-us-east.arn}"
@@ -61,7 +64,7 @@ resource "aws_ecs_service" "dbot-ecs-service-us-east" {
 
   load_balancer {
     elb_name = "${aws_elb.dbot-elastic-lb-us-east.name}"
-    container_name = "dbot-slackbot"
+    container_name = "${var.prefix}-slackbot"
     container_port = 8080
   }
 }
