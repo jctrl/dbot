@@ -1,3 +1,5 @@
+variable "availability" {}
+
 resource "aws_vpc" "hubot-vpc-us-east" {
   cidr_block = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -153,12 +155,6 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
   }
 }
 
-resource "aws_eip" "hubot-elastic-ip-us-east" {
-  instance = "${aws_instance.hubot-aws-ec2-us-east.id}"
-  vpc = true
-  depends_on = ["aws_internet_gateway.hubot-gateway-us-east"]
-}
-
 resource "aws_subnet" "hubot-subnet-us-east" {
   availability_zone = "${var.availability}"
   map_public_ip_on_launch = true
@@ -169,4 +165,12 @@ resource "aws_subnet" "hubot-subnet-us-east" {
 resource "aws_route_table_association" "hubot-route-table-association-us-east" {
   subnet_id = "${aws_subnet.hubot-subnet-us-east.id}"
   route_table_id = "${aws_route_table.hubot-route-table-us-east.id}"
+}
+
+output "subnet_id" {
+  value = "${aws_subnet.hubot-subnet-us-east.id}"
+}
+
+output "security_group" {
+  value = "${aws_security_group.hubot-security-group-us-east.id}"
 }
