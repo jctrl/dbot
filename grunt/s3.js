@@ -4,12 +4,20 @@ module.exports = {
     secretAccessKey : '<%= secretAccessKey %>',
     bucket : '<%= bucket %>'
   },
-  keys : {
+  brosephs : {
     options: {
       gzip: false
     },
-    cwd: 'aws',
+    cwd: 'terraform/modules/bots/brosephs',
     src: ['terraform.tfvars'],
-    dest: '.terraform/'
+    dest: '.terraform/brosephs'
+  },
+  deutsch : {
+    options: {
+      gzip: false
+    },
+    cwd: 'terraform/modules/bots/deutsch',
+    src: ['terraform.tfvars'],
+    dest: '.terraform/deutsch'
   }
 }

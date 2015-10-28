@@ -1,5 +1,7 @@
-default: ['upload']
-
-upload:
+brosephs:
  - 'config'
- - 's3:keys'
+ - 's3:brosephs'
+
+deutsch:
+ - 'config'
+ - 's3:deutsch'
