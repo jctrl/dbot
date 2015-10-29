@@ -64,7 +64,7 @@ resource "aws_ecs_task_definition" "brosephs-ecs-definition-us-east" {
 EOF
 }
 
-resource "aws_ecs_service" "hubot-ecs-service-us-east" {
+resource "aws_ecs_service" "hubot-brosephs-ecs-service-us-east" {
   name = "brosephs-service"
   cluster = "${var.ecs_cluster}"
   task_definition = "${aws_ecs_task_definition.brosephs-ecs-definition-us-east.arn}"

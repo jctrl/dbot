@@ -64,7 +64,7 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
 EOF
 }
 
-resource "aws_ecs_service" "hubot-ecs-service-us-east" {
+resource "aws_ecs_service" "hubot-deutsch-ecs-service-us-east" {
   name = "dbot-service"
   cluster = "${var.ecs_cluster}"
   task_definition = "${aws_ecs_task_definition.dbot-ecs-definition-us-east.arn}"
