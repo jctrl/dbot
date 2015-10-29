@@ -1,6 +1,6 @@
 module "brosephs" {
   source = "./modules/bots/brosephs"
-  HUBOT_SLACK_TOKEN = "${var.HUBOT_SLACK_TOKEN}"
+  HUBOT_BROSEPHS_SLACK_TOKEN = "${var.HUBOT_BROSEPHS_SLACK_TOKEN}"
   HUBOT_AUTH_ADMIN = "${var.HUBOT_AUTH_ADMIN}"
   HUBOT_YOUTUBE_API_KEY = "${var.HUBOT_YOUTUBE_API_KEY}"
   HUBOT_S3_BRAIN_ACCESS_KEY_ID = "${var.HUBOT_S3_BRAIN_ACCESS_KEY_ID}"
@@ -14,7 +14,7 @@ module "brosephs" {
 
 module "deutsch" {
   source = "./modules/bots/deutsch"
-  HUBOT_SLACK_TOKEN = "${var.HUBOT_SLACK_TOKEN}"
+  HUBOT_DEUTSCH_SLACK_TOKEN = "${var.HUBOT_DEUTSCH_SLACK_TOKEN}"
   HUBOT_AUTH_ADMIN = "${var.HUBOT_AUTH_ADMIN}"
   HUBOT_YOUTUBE_API_KEY = "${var.HUBOT_YOUTUBE_API_KEY}"
   HUBOT_S3_BRAIN_ACCESS_KEY_ID = "${var.HUBOT_S3_BRAIN_ACCESS_KEY_ID}"

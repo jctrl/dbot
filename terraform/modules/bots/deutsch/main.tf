@@ -1,4 +1,4 @@
-variable "HUBOT_SLACK_TOKEN" {}
+variable "HUBOT_DEUTSCH_SLACK_TOKEN" {}
 variable "HUBOT_AUTH_ADMIN" {}
 variable "HUBOT_YOUTUBE_API_KEY" {}
 variable "HUBOT_S3_BRAIN_ACCESS_KEY_ID" {}
@@ -23,8 +23,8 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
         "name" : "PORT",
         "value" : "8080"
       },{
-        "name" : "HUBOT_SLACK_TOKEN",
-        "value" : "${var.HUBOT_SLACK_TOKEN}"
+        "name" : "HUBOT_DEUTSCH_SLACK_TOKEN",
+        "value" : "${var.HUBOT_DEUTSCH_SLACK_TOKEN}"
       },{
         "name" : "HUBOT_AUTH_ADMIN",
         "value" : "${var.HUBOT_AUTH_ADMIN}"
