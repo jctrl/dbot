@@ -28,6 +28,7 @@ module "ec2" {
 module "eip" {
   source = "./modules/aws/eip"
   aws_instance = "${module.ec2.aws_instance}"
+  aws_internet_gateway = "${module.vpc.internet_gateway}"
 }
 
 module "elb" {

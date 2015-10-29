@@ -30,6 +30,10 @@ output "iam_role" {
   value = "${aws_iam_role.hubot-ecs-service-iam-role-us-east.arn}"
 }
 
+output "iam_role_policy" {
+  value = "${aws_iam_role_policy.hubot-ecs-service-iam-policy-us-east.name}"
+}
+
 output "instance_profile" {
   value = "${aws_iam_instance_profile.hubot-iam-instance-profile-us-east.name}"
 }

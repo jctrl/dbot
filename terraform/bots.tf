@@ -8,6 +8,7 @@ module "brosephs" {
   HUBOT_S3_BRAIN_BUCKET = "${var.HUBOT_S3_BRAIN_BUCKET}"
   HUBOT_S3_BRAIN_FILE_PATH = "${var.HUBOT_S3_BRAIN_FILE_PATH}"
   iam_role = "${module.iam.iam_role}"
+  iam_role_policy = "${module.iam.iam_role_policy}"
   ecs_cluster = "${module.ecs.ecs_cluster}"
   elb_name = "${module.elb.elb_name}"
 }
@@ -22,6 +23,7 @@ module "deutsch" {
   HUBOT_S3_BRAIN_BUCKET = "${var.HUBOT_S3_BRAIN_BUCKET}"
   HUBOT_S3_BRAIN_FILE_PATH = "${var.HUBOT_S3_BRAIN_FILE_PATH}"
   iam_role = "${module.iam.iam_role}"
+  iam_role_policy = "${module.iam.iam_role_policy}"
   ecs_cluster = "${module.ecs.ecs_cluster}"
   elb_name = "${module.elb.elb_name}"
 }

@@ -93,7 +93,7 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
 
   ingress {
     protocol = "tcp"
-    rule_no = 110
+    rule_no = 120
     action = "allow"
     cidr_block = "0.0.0.0/0"
     from_port = 443
@@ -102,7 +102,7 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
 
   ingress {
     protocol = "tcp"
-    rule_no = 120
+    rule_no = 130
     action = "allow"
     cidr_block = "0.0.0.0/0"
     from_port = 22
@@ -111,7 +111,7 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
 
   ingress {
     protocol = "tcp"
-    rule_no = 130
+    rule_no = 140
     action = "allow"
     cidr_block = "0.0.0.0/0"
     from_port = 3389
@@ -120,7 +120,7 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
 
   ingress {
     protocol = "tcp"
-    rule_no = 140
+    rule_no = 150
     action = "allow"
     cidr_block = "0.0.0.0/0"
     from_port = 49152
@@ -138,7 +138,7 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
 
   egress {
     protocol = "tcp"
-    rule_no = 110
+    rule_no = 120
     action = "allow"
     cidr_block = "0.0.0.0/0"
     from_port = 443
@@ -147,7 +147,7 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
 
   egress {
     protocol = "tcp"
-    rule_no = 120
+    rule_no = 130
     action = "allow"
     cidr_block = "0.0.0.0/0"
     from_port = 49152
@@ -165,6 +165,10 @@ resource "aws_subnet" "hubot-subnet-us-east" {
 resource "aws_route_table_association" "hubot-route-table-association-us-east" {
   subnet_id = "${aws_subnet.hubot-subnet-us-east.id}"
   route_table_id = "${aws_route_table.hubot-route-table-us-east.id}"
+}
+
+output "internet_gateway" {
+  value = "${aws_internet_gateway.hubot-gateway-us-east.id}"
 }
 
 output "subnet_id" {

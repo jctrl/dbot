@@ -6,6 +6,7 @@ variable "HUBOT_S3_BRAIN_SECRET_ACCESS_KEY" {}
 variable "HUBOT_S3_BRAIN_BUCKET" {}
 variable "HUBOT_S3_BRAIN_FILE_PATH" {}
 variable "iam_role" {}
+variable "iam_role_policy" {}
 variable "ecs_cluster" {}
 variable "elb_name" {}
 
@@ -23,7 +24,7 @@ resource "aws_ecs_task_definition" "brosephs-ecs-definition-us-east" {
         "name" : "PORT",
         "value" : "8081"
       },{
-        "name" : "HUBOT_BROSEPHS_SLACK_TOKEN",
+        "name" : "HUBOT_SLACK_TOKEN",
         "value" : "${var.HUBOT_BROSEPHS_SLACK_TOKEN}"
       },{
         "name" : "HUBOT_AUTH_ADMIN",
@@ -71,7 +72,6 @@ resource "aws_ecs_service" "hubot-brosephs-ecs-service-us-east" {
   desired_count = 1
 
   iam_role = "${var.iam_role}"
-  # depends_on = ["${var.iam_role_policy}"]
 
   load_balancer {
     elb_name = "${var.elb_name}"
