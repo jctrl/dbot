@@ -26,7 +26,7 @@ resource "aws_security_group" "hubot-security-group-us-east" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     from_port = 8080
-    to_port = 8080
+    to_port = 8081
   }
 
   ingress {
@@ -61,7 +61,7 @@ resource "aws_security_group" "hubot-security-group-us-east" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     from_port = 8080
-    to_port = 8080
+    to_port = 8081
   }
 
   egress {
@@ -88,7 +88,7 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
     action = "allow"
     cidr_block = "0.0.0.0/0"
     from_port = 8080
-    to_port = 8080
+    to_port = 8081
   }
 
   ingress {
@@ -133,7 +133,7 @@ resource "aws_network_acl" "hubot-network-acl-us-east" {
     action = "allow"
     cidr_block = "0.0.0.0/0"
     from_port = 8080
-    to_port = 8080
+    to_port = 8081
   }
 
   egress {
