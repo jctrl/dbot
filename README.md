@@ -5,8 +5,8 @@
 Install [Terraform](https://terraform.io/).
 
 ```
-cd .terraform
-terraform apply -var-file modules/bots/<bot directory>/terraform.tfvars
+cd terraform
+terraform apply -var-file terraform.tfvars
 ```
 
 To run Hubot with minimal functionality in a local environment:
