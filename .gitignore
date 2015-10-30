@@ -1,6 +1,6 @@
 .DS_STORE
-.tfstate
-.tfstate.backup
+*.tfstate
+*.tfstate.backup
 *.tfvars
 
 /config
