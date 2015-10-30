@@ -1,6 +1,4 @@
 .DS_STORE
-.containerInstanceArns
-
 .tfstate
 .tfstate.backup
 *.tfvars
