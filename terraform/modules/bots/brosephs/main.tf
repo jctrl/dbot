@@ -5,6 +5,7 @@ variable "HUBOT_S3_BRAIN_ACCESS_KEY_ID" {}
 variable "HUBOT_S3_BRAIN_SECRET_ACCESS_KEY" {}
 variable "HUBOT_S3_BRAIN_BUCKET" {}
 variable "HUBOT_S3_BRAIN_FILE_PATH" {}
+variable "PUBNUB_SUBSCRIBE" {}
 variable "iam_role" {}
 variable "iam_role_policy" {}
 variable "ecs_cluster" {}
@@ -62,7 +63,7 @@ resource "aws_ecs_task_definition" "brosephs-ecs-definition-us-east" {
         "hostPort": 8081
       }
     ],
-    "command": ["node", "server.js"]
+    "command": ["/bin/sh", "-c", "bin/hubot --adapter slack"]
   }
 ]
 EOF

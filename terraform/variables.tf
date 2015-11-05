@@ -10,6 +10,8 @@ variable "HUBOT_S3_BRAIN_FILE_PATH" {}
 variable "TERRAFORM_AWS_ACCESS_KEY" {}
 variable "TERRAFORM_AWS_SECRET_KEY" {}
 
+variable "PUBNUB_SUBSCRIBE" {}
+
 variable "AWS_SSH_KEY" {}
 
 variable "region" {
