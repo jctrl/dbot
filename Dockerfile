@@ -12,8 +12,6 @@ RUN useradd -d /hubot -m -s /bin/bash -U hubot
 USER hubot
 WORKDIR /hubot
 
-ADD grunt. .
-ADD .version .
 ADD id_rsa ./tmp/
 RUN ssh-agent ./tmp
 
