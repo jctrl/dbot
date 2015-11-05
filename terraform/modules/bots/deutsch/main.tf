@@ -47,6 +47,9 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
       },{
         "name" : "HUBOT_S3_BRAIN_FILE_PATH",
         "value" : "brain/deutsch.json"
+      },{
+        "name" : "PUBNUB_SUBSCRIBE",
+        "value" : "${var.PUBNUB_SUBSCRIBE}"
       }
     ],
     "privileged": true,
@@ -56,7 +59,7 @@ resource "aws_ecs_task_definition" "dbot-ecs-definition-us-east" {
         "hostPort": 8080
       }
     ],
-    "command": ["/bin/sh", "-c", "bin/hubot --adapter slack"]
+    "command": ["node", "server.js"]
   }
 ]
 EOF

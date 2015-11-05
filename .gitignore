@@ -1,4 +1,7 @@
 .DS_STORE
+id_rsa
+id_rsa.pub
+
 *.tfstate
 *.tfstate.backup
 *.tfvars
