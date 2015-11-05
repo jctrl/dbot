@@ -23,7 +23,7 @@ var start = function() {
     }
   });
 
-  exec(cwd + 'bin/hubot --adapter slack', function(err, stdout, stderr) {
+  exec('bin/hubot --adapter slack', function(err, stdout, stderr) {
     console.log(stdout);
 
     !!err && console.log(err);
