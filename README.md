@@ -126,5 +126,3 @@ The policy below is what was used for unique S3 bucket access for the Grunt task
     "TERRAFORM_AWS_SECRET_KEY" : "XXXXXX"
 }
 ```
-
-test
