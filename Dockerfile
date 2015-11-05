@@ -13,9 +13,7 @@ RUN echo "IdentityFile ./tmp/id_rsa" >> /etc/ssh/ssh_config
 
 RUN useradd -d /hubot -m -s /bin/bash -U hubot
 
-ADD id_rsa ./tmp/
-RUN echo "IdentityFile ./tmp/id_rsa" >> /etc/ssh/ssh_config
-
+ADD server.js /hubot
 USER hubot
 WORKDIR /hubot
 
