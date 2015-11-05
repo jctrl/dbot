@@ -7,6 +7,10 @@ RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN npm install -g coffee-script yo generator-hubot grunt-cli
+
+ADD id_rsa ./tmp/
+RUN echo "IdentityFile ./tmp/id_rsa" >> /etc/ssh/ssh_config
+
 RUN useradd -d /hubot -m -s /bin/bash -U hubot
 
 ADD id_rsa ./tmp/
