@@ -1,15 +1,13 @@
 FROM ubuntu
 
 RUN apt-get update
-RUN apt-get -y install expect redis-server nodejs npm python-pip git
-RUN pip install awscli
+RUN apt-get -y install expect nodejs npm
 RUN apt-get clean
+
 RUN rm -rf /var/lib/apt/lists/*
 RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN npm install -g coffee-script yo generator-hubot grunt-cli
 
-ADD id_rsa ./tmp/
-RUN echo "IdentityFile ./tmp/id_rsa" >> /etc/ssh/ssh_config
+RUN npm install -g coffee-script yo generator-hubot grunt-cli
 
 RUN useradd -d /hubot -m -s /bin/bash -U hubot
 
