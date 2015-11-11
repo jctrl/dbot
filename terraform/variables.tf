@@ -5,7 +5,6 @@ variable "HUBOT_AUTH_ADMIN" {}
 variable "HUBOT_YOUTUBE_API_KEY" {}
 variable "HUBOT_S3_BRAIN_ACCESS_KEY_ID" {}
 variable "HUBOT_S3_BRAIN_SECRET_ACCESS_KEY" {}
-variable "HUBOT_S3_BRAIN_FILE_PATH" {}
 
 variable "TERRAFORM_AWS_ACCESS_KEY" {}
 variable "TERRAFORM_AWS_SECRET_KEY" {}

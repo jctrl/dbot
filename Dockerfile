@@ -30,3 +30,5 @@ RUN npm install hubot-voting --save && npm install
 
 ADD hubot/hubot-scripts.json /hubot/
 ADD hubot/external-scripts.json /hubot/
+
+CMD ["/bin/sh", "-c", "node server.js"]
