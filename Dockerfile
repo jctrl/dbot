@@ -11,7 +11,6 @@ RUN npm install -g coffee-script yo generator-hubot grunt-cli
 
 RUN useradd -d /hubot -m -s /bin/bash -U hubot
 
-ADD server.js /hubot
 USER hubot
 WORKDIR /hubot
 
